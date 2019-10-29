@@ -44,7 +44,7 @@ class ImagePostDetailTableViewController: UITableViewController {
         let addCommentAction = UIAlertAction(title: "Add Comment", style: .default) { (_) in
             
             guard let commentText = commentTextField?.text else { return }
-            
+            //TODO: -                                              Why the ampersand?
             self.postController.addComment(with: commentText, to: &self.post!)
             
             DispatchQueue.main.async {
