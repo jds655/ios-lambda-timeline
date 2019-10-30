@@ -10,6 +10,15 @@ import UIKit
 
 class ImagePostDetailTableViewController: UITableViewController {
     
+    var post: Post!
+    var postController: PostController!
+    var imageData: Data?
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var imageViewAspectRatioConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
@@ -31,7 +40,21 @@ class ImagePostDetailTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     @IBAction func createComment(_ sender: Any) {
+        let alert = UIAlertController(title: "Comment Type", message: "Please select what type of comment to leave.", preferredStyle: .alert)
+        let textAction = UIAlertAction(title: "Text", style: .default) { (_) in
+            self.createTextComment()
+        }
+        let audioAction = UIAlertAction(title: "Audio", style: .default) { (_) in
+            self.createAudioComment()
+        }
         
+    }
+    
+    private func createAudioComment () {
+        self.performSegue(withIdentifier: "AddAudioComment", sender: self)
+    }
+    
+    private func createTextComment () {
         let alert = UIAlertController(title: "Add a comment", message: "Write your comment below:", preferredStyle: .alert)
         
         var commentTextField: UITextField?
@@ -75,14 +98,14 @@ class ImagePostDetailTableViewController: UITableViewController {
         return cell
     }
     
-    var post: Post!
-    var postController: PostController!
-    var imageData: Data?
-    
-    
-    
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var imageViewAspectRatioConstraint: NSLayoutConstraint!
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "AddAudioComment":
+            guard let vc = segue.destination as? AudioPostViewController else { return }
+            vc.post = self.post
+            vc.postController = self.postController
+        default:
+            break
+        }
+    }
 }

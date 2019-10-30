@@ -32,6 +32,7 @@
 		E0B5C66A2368D98800E6F48E /* piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E0B5C6672368D98700E6F48E /* piano.mp3 */; };
 		E0B5C66B2368D98800E6F48E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B5C6682368D98700E6F48E /* Player.swift */; };
 		E0B5C66C2368D98800E6F48E /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B5C6692368D98800E6F48E /* Recorder.swift */; };
+		E0B5C66F2368E43100E6F48E /* AudioPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B5C66E2368E43100E6F48E /* AudioPostViewController.swift */; };
 		E453457955DF907FCBD117F1 /* Pods_LambdaTimeline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA39CACB677861CF84322FB5 /* Pods_LambdaTimeline.framework */; };
 		FB0928D423679B590024B6B3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB0928D323679B580024B6B3 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		E0B5C6672368D98700E6F48E /* piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano.mp3; sourceTree = "<group>"; };
 		E0B5C6682368D98700E6F48E /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		E0B5C6692368D98800E6F48E /* Recorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recorder.swift; sourceTree = "<group>"; };
+		E0B5C66E2368E43100E6F48E /* AudioPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPostViewController.swift; sourceTree = "<group>"; };
 		FB0928D323679B580024B6B3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -170,6 +172,7 @@
 				46A0366921700F5100E7FF73 /* PostsCollectionViewController.swift */,
 				46CFE6F421707D0000E7FF73 /* ImagePostViewController.swift */,
 				46D571F72173FC2700E7FF73 /* ImagePostDetailTableViewController.swift */,
+				E0B5C66E2368E43100E6F48E /* AudioPostViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				E0B5C66B2368D98800E6F48E /* Player.swift in Sources */,
 				46CFE6F32170757F00E7FF73 /* User+DictionaryRepresentation.swift in Sources */,
 				46D571F32172D43B00E7FF73 /* Cache.swift in Sources */,
+				E0B5C66F2368E43100E6F48E /* AudioPostViewController.swift in Sources */,
 				46CFE7012171559500E7FF73 /* FetchMediaOperation.swift in Sources */,
 				E0B5C66C2368D98800E6F48E /* Recorder.swift in Sources */,
 				46D571F82173FC2700E7FF73 /* ImagePostDetailTableViewController.swift in Sources */,
