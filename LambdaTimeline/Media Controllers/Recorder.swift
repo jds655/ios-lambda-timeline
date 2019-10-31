@@ -16,16 +16,21 @@ protocol RecorderDelegate {
 class Recorder: NSObject {
     var audioRecorder: AVAudioRecorder?
     var delegate: RecorderDelegate?
+    var timer: Timer?
     var fileURL: URL? {
         return audioRecorder?.url
     }
     var isRecording: Bool {
         return audioRecorder?.isRecording ?? false
     }
+    var duration:  TimeInterval {
+        return audioRecorder?.currentTime ?? 0
+    }
     
     override init() {
         
     }
+    
     //record
     func record() {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -41,11 +46,13 @@ class Recorder: NSObject {
         }
         audioRecorder?.record()
         delegate?.recorderDidChangeState(recorder: self)
+        startTimer()
     }
     
     //stop
     func stop () {
         audioRecorder?.stop()
+        cancelTimer()
         delegate?.recorderDidChangeState(recorder: self)
     }
     
@@ -55,6 +62,20 @@ class Recorder: NSObject {
         } else {
             record()
         }
+    }
+    
+    func startTimer() {
+        cancelTimer()
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(updateTimer(timer:)), userInfo: nil, repeats: true)
+    }
+    
+    func cancelTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    @objc private func updateTimer(timer: Timer) {
+        delegate?.recorderDidChangeState(recorder: self)
     }
 }
 

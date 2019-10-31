@@ -41,7 +41,7 @@ class Post {
         self.ratio = ratio
         self.mediaType = mediaType
         self.author = author
-        self.comments = [Comment(text: title, author: author)]
+        self.comments = [Comment(text: title, author: author, mediaURL: nil)]
         self.timestamp = timestamp
     }
     

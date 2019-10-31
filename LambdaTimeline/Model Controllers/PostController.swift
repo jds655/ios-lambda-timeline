@@ -45,12 +45,27 @@ class PostController {
         }
     }
     
+    
+    func addComment(with audioURL: URL, to post: inout Post) {
+        
+        guard let currentUser = Auth.auth().currentUser,
+            let author = Author(user: currentUser) else { return }
+        
+        //TODO: - Store the audio data in FS then add comment with returning URL
+        
+        let comment = Comment(text: nil, author: author, mediaURL: audioURL)
+        post.comments.append(comment)
+        
+        savePostToFirebase(post)
+    }
+
+    
     func addComment(with text: String, to post: inout Post) {
         
         guard let currentUser = Auth.auth().currentUser,
             let author = Author(user: currentUser) else { return }
         
-        let comment = Comment(text: text, author: author)
+        let comment = Comment(text: text, author: author, mediaURL: nil)
         post.comments.append(comment)
         
         savePostToFirebase(post)

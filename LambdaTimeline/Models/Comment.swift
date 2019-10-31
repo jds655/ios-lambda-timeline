@@ -15,13 +15,14 @@ class Comment: FirebaseConvertible, Equatable {
     static private let author = "author"
     static private let timestampKey = "timestamp"
     static private let mediaURLKey = "mediaurl"
+    static private let mediaTypeKey = "mediaType"
     
-    let text: String
+    let text: String?
     let author: Author
     let timestamp: Date
     let mediaURL: URL?
     
-    init(text: String, author: Author, timestamp: Date = Date(), _ mediaURL: URL? = nil) {
+    init(text: String?, author: Author, timestamp: Date = Date(), mediaURL: URL?) {
         self.text = text
         self.author = author
         self.timestamp = timestamp
@@ -35,17 +36,17 @@ class Comment: FirebaseConvertible, Equatable {
             let timestampTimeInterval = dictionary[Comment.timestampKey] as? TimeInterval,
             let mediaURL = dictionary[Comment.mediaURLKey] as? String else { return nil }
         
-        self.text = text
+        self.text = text != "nil" ? text : nil
         self.author = author
         self.timestamp = Date(timeIntervalSince1970: timestampTimeInterval)
-        self.mediaURL = URL(string: mediaURL) ?? nil
+        self.mediaURL = mediaURL != "nil" ? URL(string: mediaURL) : nil
     }
     
     var dictionaryRepresentation: [String: Any] {
-        return [Comment.textKey: text,
+        return [Comment.textKey: text ?? "nil",
                 Comment.author: author.dictionaryRepresentation,
                 Comment.timestampKey: timestamp.timeIntervalSince1970,
-                Comment.mediaURLKey: mediaURL?.absoluteString ?? ""
+                Comment.mediaURLKey: mediaURL?.absoluteString ?? "nil"
         ]
     }
     

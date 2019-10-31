@@ -43,6 +43,7 @@ class AudioPostViewController: UIViewController {
         super.init(coder: aDecoder)
         recorder?.delegate = self
         player?.delegate = self
+        status = .waiting
     }
     
     override func viewDidLoad() {
@@ -53,23 +54,33 @@ class AudioPostViewController: UIViewController {
     
     private func updateViews() {
         statusLabel.text = status.rawValue
+        
         switch status {
         case .recording:
+            guard let recorder = recorder else { return }
+            recordTimeLabel.text = timeFormatter.string(from: recorder.duration)
             break
         case .saving:
             break
         case .waiting:
             break
         case .playing:
-            break
+            guard let player = player else { return }
+            recordTimeLabel.text = timeFormatter.string(from: player.timeRemaining)
         case .done:
             break
         }
     }
     
     @IBAction func recordTapped(_ sender: UIButton) {
-        recorder?.toggleRecording()
-        status = .recording
+        guard let recorder = recorder else { return }
+        recorder.toggleRecording()
+        switch recorder.isRecording {
+        case true:
+            status = .recording
+        case false:
+            status = .saving
+        }
         updateViews()
     }
     
@@ -80,6 +91,7 @@ class AudioPostViewController: UIViewController {
     }
     
     @IBAction func cancelTapped(_ sender: Any) {
+        status = .waiting
         self.dismiss(animated: true, completion: nil)
     }
 }
@@ -100,8 +112,10 @@ extension AudioPostViewController: RecorderDelegate {
         updateViews()
         if let url = recorder.fileURL, recorder.isRecording == false {
             //Play the recording
-            player = Player(url: url)
-            player?.delegate = self
+            let player = Player(url: url)
+            player.delegate = self
+            player.play()
+            status = .waiting
         }
     }
 }

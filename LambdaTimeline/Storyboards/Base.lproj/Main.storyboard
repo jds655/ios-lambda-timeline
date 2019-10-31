@@ -107,7 +107,7 @@
         <!--Audio Post View Controller-->
         <scene sceneID="VE0-Vw-utx">
             <objects>
-                <viewController id="K1F-eY-lGr" customClass="AudioPostViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="formSheet" id="K1F-eY-lGr" customClass="AudioPostViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XhV-GR-tnr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -177,6 +177,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pG4-nN-H7X"/>
                     </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="375" height="200"/>
                     <size key="freeformSize" width="375" height="200"/>
                     <connections>
                         <outlet property="recordButton" destination="Pv4-Hw-jKo" id="FfE-hs-hpH"/>
@@ -429,7 +430,7 @@
                         <outlet property="imageViewAspectRatioConstraint" destination="y1B-iX-x3e" id="wIt-kh-Tzd"/>
                         <outlet property="titleLabel" destination="jyy-BX-c2c" id="UEd-xO-ipC"/>
                         <segue destination="K1F-eY-lGr" kind="popoverPresentation" identifier="AddAudioComment" popoverAnchorBarButtonItem="xrT-JD-ey3" id="XJD-YL-HnQ">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES"/>
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
                     </connections>
                 </tableViewController>

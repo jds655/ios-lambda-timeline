@@ -47,6 +47,9 @@ class ImagePostDetailTableViewController: UITableViewController {
         let audioAction = UIAlertAction(title: "Audio", style: .default) { (_) in
             self.createAudioComment()
         }
+        alert.addAction(textAction)
+        alert.addAction(audioAction)
+        present(alert, animated: true, completion: nil)
         
     }
     
